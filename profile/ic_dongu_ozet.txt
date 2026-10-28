@@ -1,0 +1,36 @@
+##### RV32IM #####
+Dosya: profile/sw_gotoh_rv32im.s   Dongu: .L13 ...geri dal   Toplam statik komut: 34
+
+Komut bazinda: {'addi': 8, 'mv': 6, 'bge': 5, 'lw': 2, 'sw': 2, 'lbu': 1, 'sub': 1, 'snez': 1, 'neg': 1, 'andi': 1, 'not': 1, 'srai': 1, 'add': 1, 'and': 1, 'beq': 1, 'j': 1}
+
+Kategori                Adet   Pay %
+toplama/cikarma           10    29.4
+dal/atlama                 7    20.6
+mantik/kaydirma            6    17.6
+mv (yazmac tasima)         6    17.6
+bellek yukleme             3     8.8
+bellek yazma               2     5.9
+
+##### RV32IM+Zbb #####
+Dosya: profile/sw_gotoh_rv32im_zbb.s   Dongu: .L12 ...geri dal   Toplam statik komut: 26
+
+Komut bazinda: {'addi': 8, 'max': 6, 'lw': 2, 'sw': 2, 'mv': 1, 'lbu': 1, 'sub': 1, 'snez': 1, 'neg': 1, 'andi': 1, 'add': 1, 'bne': 1}
+
+Kategori                Adet   Pay %
+toplama/cikarma           10    38.5
+max                        6    23.1
+bellek yukleme             3    11.5
+mantik/kaydirma            3    11.5
+bellek yazma               2     7.7
+mv (yazmac tasima)         1     3.8
+dal/atlama                 1     3.8
+
+##### BIT GENISLIGI (L=250) #####
+Dosya: data/pairs_L250.tsv  (100 cift)
+Deger      min     max   gereken bit
+H            0     476        10 bit (isaretli)
+E           -6     468        10 bit (isaretli)
+F           -6     470        10 bit (isaretli)
+Ortak: 10 bit isaretli yeterli (32 bit yazmacin 31%'i)
+
+riscv64-linux-gnu-gcc (Debian 16.2.0-3) 16.2.0
