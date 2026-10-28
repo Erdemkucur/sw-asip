@@ -1,0 +1,21 @@
+digraph cell {
+  rankdir=LR; node [shape=box, fontname="Helvetica"];
+  q [label="q[i]", shape=ellipse]; t [label="t[j]", shape=ellipse];
+  diag [label="H[i-1][j-1]\n(diag)", shape=ellipse];
+  hup  [label="H[i-1][j]\n(Hup)", shape=ellipse];
+  eold [label="E[i-1][j]\n(E_eski)", shape=ellipse];
+  hleft[label="H[i][j-1]\n(Hleft)", shape=ellipse];
+  fold [label="F[i][j-1]\n(F_eski)", shape=ellipse];
+
+  sel  [label="s = (q==t)?+2:-4"];
+  adds [label="diag + s"];
+  e1 [label="Hup - 6"]; e2 [label="E_eski - 2"]; maxe [label="max\n→ E"];
+  f1 [label="Hleft - 6"]; f2 [label="F_eski - 2"]; maxf [label="max\n→ F"];
+  m0 [label="max(E, 0)"]; m1 [label="max(diag+s, .)"]; mh [label="max(., F)\n→ H"];
+  mb [label="max(best, H)\n→ best"];
+
+  q -> sel; t -> sel; diag -> adds; sel -> adds;
+  hup -> e1; eold -> e2; e1 -> maxe; e2 -> maxe;
+  hleft -> f1; fold -> f2; f1 -> maxf; f2 -> maxf;
+  maxe -> m0; m0 -> m1; adds -> m1; m1 -> mh; maxf -> mh; mh -> mb;
+}
