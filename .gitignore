@@ -4,3 +4,5 @@ ref/sw_gotoh
 ref/sw_gotoh_pg
 gmon.out
 profile/*.out
+__pycache__/
+profile/*.log
