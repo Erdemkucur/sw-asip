@@ -1,0 +1,6 @@
+data/*.tsv
+data/out_*.txt
+ref/sw_gotoh
+ref/sw_gotoh_pg
+gmon.out
+profile/*.out
