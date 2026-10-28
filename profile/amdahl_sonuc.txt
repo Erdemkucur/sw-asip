@@ -1,0 +1,12 @@
+Olculen f = 741,625,264 / 743,002,133 = 0.998147
+Amdahl tavani 1/(1-f) = 539.6x
+
+Senaryo                                                  k   s=26/k  S_toplam
+A  RV32IM+Zbb (baz cizgi)                             26.0     1.00      1.00
+B  A + skor secimi tek komut (5 -> 1)                 22.0     1.18      1.18
+C  B + isaretci/dongu yonetimi donanima (4 -> 0)      18.0     1.44      1.44
+D  C + 2x16 bit paketli (hucre basina komut /2)        9.0     2.89      2.88
+
+Zbb'nin temel RV32IM'e gore kazanci (statik komut sayisi):
+  29 -> 26 : 1.12x  (10.3% daha kisa)
+  34 -> 26 : 1.31x  (23.5% daha kisa)
