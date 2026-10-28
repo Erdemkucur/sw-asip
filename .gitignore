@@ -6,3 +6,4 @@ gmon.out
 profile/*.out
 __pycache__/
 profile/*.log
+callgrind.out.*
