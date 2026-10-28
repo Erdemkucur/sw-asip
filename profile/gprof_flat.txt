@@ -1,0 +1,6 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  us/call  us/call  name    
+100.15      0.33     0.33    20000    16.52    16.52  sw_gotoh

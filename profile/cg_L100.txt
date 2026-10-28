@@ -1,0 +1,99 @@
+--------------------------------------------------------------------------------
+Profile data file 'profile/cg_L100.out' (creator: callgrind-3.27.1)
+--------------------------------------------------------------------------------
+I1 cache: 
+D1 cache: 
+LL cache: 
+Timerange: Basic block 0 - 6280113
+Trigger: Program termination
+Profiled target:  ./ref/sw_gotoh (PID 10617, part 1)
+Events recorded:  Ir
+Events shown:     Ir
+Event sort order: Ir
+Thresholds:       99
+Include dirs:     
+User annotated:   
+Auto-annotation:  on
+
+--------------------------------------------------------------------------------
+Ir                   
+--------------------------------------------------------------------------------
+175,393,246 (100.0%)  PROGRAM TOTALS
+
+--------------------------------------------------------------------------------
+Ir                    file:function
+--------------------------------------------------------------------------------
+174,706,424 (99.61%)  ref/sw_gotoh.c:sw_gotoh [/home/kali/sw-asip/ref/sw_gotoh]
+
+--------------------------------------------------------------------------------
+-- Auto-annotated source: ref/sw_gotoh.c
+--------------------------------------------------------------------------------
+Ir                  
+
+-- line 8 ----------------------------------------
+         .           
+         .           #define MATCH    2
+         .           #define MISMATCH (-4)
+         .           #define GAP_O    4
+         .           #define GAP_E    2
+         .           #define NEG_INF  (-1000000)
+         .           #define MAXLEN   4096
+         .           
+66,010,560 (37.64%)  static inline int32_t max2(int32_t a, int32_t b) { return a > b ? a : b; }
+         .           
+         .           // Referans (skalar) hizalama: skoru dondurur
+     5,500 ( 0.00%)  int32_t sw_gotoh(const char *q, int m, const char *t, int n) {
+         .               static int32_t H[MAXLEN + 1], E[MAXLEN + 1];   // tek satirlik tamponlar
+         .               int32_t best = 0;
+   161,004 ( 0.09%)      for (int j = 0; j <= n; j++) { H[j] = 0; E[j] = NEG_INF; }
+    21,000 ( 0.01%)  => /build/reproducible-path/glibc-2.43/string/../sysdeps/x86_64/multiarch/memset-vec-unaligned-erms.S:__memset_avx2_unaligned_erms (500x)
+       732 ( 0.00%)  => /build/reproducible-path/glibc-2.43/elf/../sysdeps/x86_64/dl-trampoline.h:_dl_runtime_resolve_xsave (1x)
+   202,532 ( 0.12%)      for (int i = 1; i <= m; i++) {
+   100,016 ( 0.06%)          int32_t diag = 0;            // H[i-1][j-1]
+    50,008 ( 0.03%)          int32_t Hleft = 0;           // H[i][j-1]
+    50,008 ( 0.03%)          int32_t F = NEG_INF;         // F[i][j-1] satir boyunca tasinir
+18,005,880 (10.27%)          for (int j = 1; j <= n; j++) {
+18,154,904 (10.35%)              int32_t s  = (q[i-1] == t[j-1]) ? MATCH : MISMATCH;
+11,951,912 ( 6.81%)              int32_t Hup = H[j];                                  // H[i-1][j]
+24,003,840 (13.69%)              E[j] = max2(Hup   - GAP_O - GAP_E, E[j] - GAP_E);    // dikey gap
+12,001,920 ( 6.84%)              F    = max2(Hleft - GAP_O - GAP_E, F    - GAP_E);    // yatay gap
+ 6,000,960 ( 3.42%)              int32_t h = max2(0, max2(diag + s, max2(E[j], F)));
+         .                       diag = Hup;
+ 6,000,960 ( 3.42%)              H[j] = h;
+         .                       Hleft = h;
+12,001,920 ( 6.84%)              if (h > best) best = h;
+         .                   }
+         .               }
+         .               return best;
+     4,500 ( 0.00%)  }
+         .           
+         .           #ifndef NO_MAIN
+         3 ( 0.00%)  int main(void) {
+         .               static char line[2 * MAXLEN + 4];
+     3,512 ( 0.00%)      while (fgets(line, sizeof line, stdin)) {
+   122,170 ( 0.07%)  => ./libio/./libio/iofgets.c:fgets (501x)
+       677 ( 0.00%)  => /build/reproducible-path/glibc-2.43/elf/../sysdeps/x86_64/dl-trampoline.h:_dl_runtime_resolve_xsave (1x)
+     2,504 ( 0.00%)          char *tab = strchr(line, '\t');
+    21,500 ( 0.01%)  => /build/reproducible-path/glibc-2.43/string/../sysdeps/x86_64/multiarch/strchr-avx2.S:__strchr_avx2 (500x)
+       676 ( 0.00%)  => /build/reproducible-path/glibc-2.43/elf/../sysdeps/x86_64/dl-trampoline.h:_dl_runtime_resolve_xsave (1x)
+     1,000 ( 0.00%)          if (!tab) continue;
+       500 ( 0.00%)          *tab = 0;
+       500 ( 0.00%)          char *q = line, *t = tab + 1;
+     2,504 ( 0.00%)          t[strcspn(t, "\r\n")] = 0;
+    56,143 ( 0.03%)  => ./string/../sysdeps/x86_64/multiarch/strcspn-sse4.c:__strcspn_sse42 (500x)
+       678 ( 0.00%)  => /build/reproducible-path/glibc-2.43/elf/../sysdeps/x86_64/dl-trampoline.h:_dl_runtime_resolve_xsave (1x)
+     9,008 ( 0.01%)          printf("%d\n", sw_gotoh(q, (int)strlen(q), t, (int)strlen(t)));
+174,728,156 (99.62%)  => ref/sw_gotoh.c:sw_gotoh (500x)
+   280,943 ( 0.16%)  => ./stdio-common/./stdio-common/printf.c:printf (500x)
+    29,052 ( 0.02%)  => /build/reproducible-path/glibc-2.43/string/../sysdeps/x86_64/multiarch/strlen-avx2.S:__strlen_avx2 (1,000x)
+     1,421 ( 0.00%)  => /build/reproducible-path/glibc-2.43/elf/../sysdeps/x86_64/dl-trampoline.h:_dl_runtime_resolve_xsave (2x)
+         .               }
+         .               return 0;
+         4 ( 0.00%)  }
+         .           #endif
+
+--------------------------------------------------------------------------------
+Ir                   
+--------------------------------------------------------------------------------
+174,725,959 (99.62%)  events annotated
+
