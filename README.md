@@ -1,4 +1,4 @@
-# sw-asip: Affine-gap Smith-Waterman için ASIP analizi (BIL523 Ödev 1)
+# sw-asip: Affine-gap Smith-Waterman için ASIP analizi 
 
 Uygulama: affine-gap yerel hizalama (Gotoh), yalnızca skor. Skorlama: eşleşme +2, uyuşmazlık -4, gap uzunluğu k için ceza 4 + 2k.
 
